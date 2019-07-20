@@ -88,8 +88,9 @@ $(function() {
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          */
-        it('contain at least one item', function() {
-            expect(document.getElementsByClassName('entry')).not.toBe(0);
+        it('contain at least one entry in the feed', function() {
+            feed = document.querySelector('.feed');
+            expect(feed.querySelectorAll('.entry').length).toBeGreaterThan(0);
         });
     });
 
@@ -111,8 +112,6 @@ $(function() {
         /* Test that ensures when a new feed is loaded
          */
         it('updates content', function(done) {
-            console.log(page_one);
-            console.log(page_two);
             expect(page_one).not.toEqual(page_two);
         });
     });
