@@ -106,8 +106,11 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(0, function() {
-                page_one = document.documentElement;
-                loadFeed(1, done)
+                page_one = document.querySelector('.feed').innerHTML;
+                loadFeed(1, function() {
+                    page_two = document.querySelector('.feed').innerHTML;
+                    done();
+                })
             });
         });
         /* TODO: Write a test that ensures when a new feed is loaded
@@ -115,7 +118,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
         it('updates content', function() {
-            expect(page_two).not.toEqual(document.documentElement);
+            expect(page_two).not.toEqual(page_one);
         });
     });
 }());
